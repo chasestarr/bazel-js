@@ -1,0 +1,10 @@
+load("//tooling/js:defs.bzl", "js_monorepo_library")
+
+js_monorepo_library(
+    name = "library",
+    package_name = "@org/add-one",
+    srcs = [
+        "index.js",
+    ],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,13 @@
+load("//tooling/js:defs.bzl", "js_monorepo_library")
+
+js_monorepo_library(
+    name = "library",
+    package_name = "@org/add-two",
+    srcs = [
+        "index.js",
+        "//src/@org/add-one:library",
+    ],
+    npm_dependencies = [
+    ],
+    visibility = ["//visibility:public"],
+)

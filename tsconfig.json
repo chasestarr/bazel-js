@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "target": "ESNext",
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "lib": ["es2022", "dom"],
+    "esModuleInterop": true,
+    "declaration": true,
+    "strictPropertyInitialization": false
+  },
+  "exclude": ["bazel-*", "node_modules"]
+}

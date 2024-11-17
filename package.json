@@ -1,0 +1,11 @@
+{
+  "name": "web-repo",
+  "pnpm": {
+    "onlyBuiltDependencies": []
+  },
+  "devDependencies": {
+    "@types/jest": "29.5.14",
+    "jest-cli": "29.5.0",
+    "jest-junit": "15.0.0"
+  }
+}
