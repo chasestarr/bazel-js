@@ -28,9 +28,6 @@ importers:
       '@babel/preset-env':
         specifier: 7.20.2
         version: 7.20.2(@babel/core@7.20.2)
-      '@types/jest':
-        specifier: 29.5.14
-        version: 29.5.14
       babel-jest:
         specifier: 29.3.1
         version: 29.3.1(@babel/core@7.20.2)
