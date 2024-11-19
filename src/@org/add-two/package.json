@@ -1,0 +1,6 @@
+{
+  "name": "@org/add-two",
+  "dependencies": {
+    "@org/add-one": "workspace:*"
+  }
+}

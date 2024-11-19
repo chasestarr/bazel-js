@@ -1,2 +1,4 @@
 node_modules
+src/@org/add-one/node_modules
+src/@org/add-two/node_modules
 src/service-a/node_modules

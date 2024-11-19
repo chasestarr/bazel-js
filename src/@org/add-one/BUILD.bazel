@@ -1,10 +1,64 @@
-load("//tooling/js:defs.bzl", "js_monorepo_library")
+load("@aspect_rules_js//npm:defs.bzl", "npm_package")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+load("//tooling/js:defs.bzl", "ts_library", "ts_test", "ts_test_comp", "ts_vitest")
 
-js_monorepo_library(
+npm_link_all_packages()
+
+ts_library(
     name = "library",
-    package_name = "@org/add-one",
     srcs = [
-        "index.js",
+        "index.ts",
     ],
+)
+
+# ts_library(
+#     name = "test_library",
+#     srcs = [
+#         "index.test.ts",
+#     ],
+#     deps = [
+#         ":library",
+#         "//:node_modules/@types/jest",
+#     ]
+# )
+
+# ts_test(
+#     name = "test",
+#     config = "jest.config.mjs",
+#     data = [
+#         ":library_cjs",
+#         ":test_library_cjs",
+#     ],
+#     test = "index.test.js",
+# )
+
+ts_test_comp(
+    name = "test_comp",
+    config = "jest.config.mjs",
+    embed = [":library"],
+    deps = [
+        ":library",
+    ],
+    data = [
+        ":library_cjs",
+    ],
+    srcs = [
+        "index.test.ts",
+    ],
+    test = "index.test.js",
+)
+
+npm_package(
+    name = "pkg",
+    srcs = [":library"],
     visibility = ["//visibility:public"],
 )
+
+# ts_vitest(
+#   name = "vitest",
+#   config = "vitest.config.mjs",
+#   test = "index.test.ts",
+#   data = [
+#     "index.ts",
+#   ],
+# )

@@ -1,13 +1,16 @@
 load("@npm//:defs.bzl", "npm_link_all_packages")
-load("//tooling/js:defs.bzl", "js_monorepo_binary")
+load("//tooling/js:defs.bzl", "ts_library")
 
 npm_link_all_packages()
 
-js_monorepo_binary(
-    name = "service-a",
-    data = [
-        "//src/@org/add-one:library",
-        "//src/@org/add-two:library",
+ts_library(
+    name = "library",
+    srcs = [
+      "index.ts",
     ],
-    entry_point = "index.mjs",
+    deps = [
+      "//src/service-a/feature-a:library",
+      ":node_modules/@org/add-one",
+      ":node_modules/@org/add-two",
+    ]
 )
