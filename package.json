@@ -4,6 +4,7 @@
     "onlyBuiltDependencies": []
   },
   "devDependencies": {
+    "@swc/jest": "0.2.37",
     "@types/jest": "29.5.14",
     "@vitest/coverage-istanbul": "2.1.5",
     "jest-cli": "29.5.0",

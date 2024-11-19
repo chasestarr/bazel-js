@@ -7,5 +7,6 @@ test("foo works", () => {
 test("another", () => {
   expect(foo("fizz")).toBe("fizz bar");
   // fails ts typecheck, but vitest has no complaints
-  // expect(foo(2)).toBe("fizz bar");
+  // @ts-expect-error
+  expect(foo(2)).toBe("fizz bar");
 });

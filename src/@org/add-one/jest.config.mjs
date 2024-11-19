@@ -1,4 +1,6 @@
 export default {
   testEnvironment: "node",
-  transform: {},
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
 };
