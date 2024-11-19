@@ -3,7 +3,6 @@ load("@npm//:defs.bzl", "npm_link_all_packages")
 load("@aspect_rules_jest//jest:defs.bzl", _jest_test = "jest_test")
 load("@aspect_rules_swc//swc:defs.bzl", _swc = "swc")
 load("@aspect_rules_ts//ts:defs.bzl", _ts_library = "ts_project")
-load("@fremtind_rules_vitest//vitest:defs.bzl", _vitest_test = "vitest_test")
 
 def ts_library(name, tsconfig = None, **kwargs):
     _ts_library(
