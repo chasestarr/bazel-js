@@ -3,3 +3,5 @@ After adding a dependency: `bazel run -- @pnpm//:pnpm --dir $PWD install --lockf
 Run all tests: `bazel test //...`
 
 Print test logs `bazel test //... --test_output=streamed`
+
+Coverage: `bazel coverage //... --test_output=streamed`
