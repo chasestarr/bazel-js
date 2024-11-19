@@ -1,4 +1,4 @@
-load("//tooling/js:defs.bzl", "ts_library", "ts_test_comp", "ts_vitest", "ts_workspace")
+load("//tooling/js:defs.bzl", "ts_library", "ts_test", "ts_workspace")
 
 ts_library(
     name = "library",
@@ -10,63 +10,13 @@ ts_library(
     ],
 )
 
-# ts_library(
-#     name = "library_cjs",
-#     srcs = [
-#         "index.ts",
-#     ],
-#     deps = [
-#         ":node_modules/@org/add-one",
-#     ],
-#     esm = False,
-# )
-
-# ts_library(
-#   name = "test_library_cjs",
-#   testonly = True,
-#   esm = False,
-#   srcs = [
-#     "index.test.ts",
-#   ],
-#   deps = [
-#       ":library",
-#       "//:node_modules/@types/jest",
-#   ],
-# )
-
-# ts_test(
-#     name = "test",
-#     config = "jest.config.mjs",
-#     test = "index.test.js",
-#     data = [
-#         ":library",
-#         ":library_cjs",
-#         ":test_library_cjs",
-#     ],
-# )
+ts_test(
+    name = "test",
+    embed = [":library"],
+    test = "index.test.ts",
+)
 
 ts_workspace(
     srcs = [":library"],
     visibility = ["//visibility:public"],
 )
-
-ts_test_comp(
-    name = "test_comp",
-    config = "jest.config.mjs",
-    embed = [":library"],
-    test = "index.test.ts",
-)
-
-# ts_vitest(
-#   name = "vitest",
-#   config = "vitest.config.mjs",
-#   test = "index.test.ts",
-#   data = [],
-#   # data = [
-#   #   "index.ts",
-#   # ],
-#   deps = [
-#     ":library",
-#     # ":node_modules/@org/add-one",
-#   ],
-# )

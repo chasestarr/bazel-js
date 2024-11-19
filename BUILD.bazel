@@ -3,8 +3,8 @@ load("@aspect_rules_js//js:defs.bzl", "js_library")
 load("@npm//:defs.bzl", "npm_link_all_packages")
 
 exports_files([
-    "tsconfig.json",
     "package.json",
+    "tsconfig.json",
 ])
 
 npm_link_all_packages(name = "node_modules")

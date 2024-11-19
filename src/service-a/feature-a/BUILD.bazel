@@ -1,4 +1,4 @@
-load("//tooling/js:defs.bzl", "ts_library", "ts_test", "ts_vitest", "ts_test_compile_test_lib")
+load("//tooling/js:defs.bzl", "ts_library", "ts_test")
 
 ts_library(
     name = "library",
@@ -8,54 +8,8 @@ ts_library(
     visibility = ["//src/service-a:__subpackages__"],
 )
 
-ts_library(
-    name = "library_cjs",
-    srcs = [
-        "index.ts",
-    ],
-    esm = False,
-)
-
-ts_library(
-  name = "test_library_cjs",
-  testonly = True,
-  esm = False,
-  srcs = [
-    "index.test.ts",
-  ],
-  deps = [
-      ":library",
-      "//:node_modules/@types/jest",
-  ],
-)
-
-# ts_test_compile_test_lib(
-#     name = "test_compile",
-#     config = "jest.config.mjs",
-#     test = "index.test.ts",
-#     deps = [
-#         ":library",
-#         # ":library_cjs",
-#         # ":test_library_cjs",
-#     ],
-# )
-
 ts_test(
     name = "test",
-    config = "jest.config.mjs",
-    test = "index.test.js",
-    data = [
-        ":library",
-        ":library_cjs",
-        ":test_library_cjs",
-    ],
-)
-
-ts_vitest(
-  name = "vitest",
-  config = "vitest.config.mjs",
-  test = "index.test.ts",
-  data = [
-    "index.ts",
-  ],
+    embed = [":library"],
+    test = "index.test.ts",
 )
