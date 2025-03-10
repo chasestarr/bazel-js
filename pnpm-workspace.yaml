@@ -1,4 +1,2 @@
 packages:
-  - "src/service-a"
-  - "src/@org/add-one"
-  - "src/@org/add-two"
+  - "src/multiple-graphql"

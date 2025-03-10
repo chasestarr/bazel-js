@@ -1,0 +1,22 @@
+load("@aspect_bazel_lib//lib:directory_path.bzl", "directory_path")
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+directory_path(
+    name = "graphql_inspector_entry_point",
+    directory = "//src/multiple-graphql:node_modules/@graphql-inspector/ci/dir",
+    path = "cjs/index.js",
+)
+
+js_binary(
+    name = "graphql_inspector_bin",
+    data = [
+        ":node_modules",
+        "new.graphql",
+        "old.graphql",
+    ],
+    entry_point = ":graphql_inspector_entry_point",
+    env = {"NODE_PATH": "node_modules"},
+)
