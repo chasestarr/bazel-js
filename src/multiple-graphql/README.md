@@ -57,3 +57,14 @@ means we have to implement our own wrapper around the behavior we are trying to
 build in this case use @graphql-inspector/core directly rather than call it
 through @graphql-inspector/ci. This is viable this time, but will break down
 again in the future.
+
+Installing `node_modules` locally and running through exec seems to work fine:
+```
+multiple-graphql on main $ pnpm install
+multiple-graphql on main $ pnpm exec graphql-inspector diff old.graphql new.graphql
+
+Detected the following changes (1) between schemas:
+
+✖  Field age was removed from object type User
+error Detected 1 breaking change
+```
