@@ -1,0 +1,17 @@
+load("@aspect_rules_esbuild//esbuild:defs.bzl", "esbuild")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+
+# cannot reproduce with tsc transpiler, only with custom impl
+ts_project(
+    name = "entrypoint_library",
+		srcs = ["entrypoint.ts"],
+		declaration = True,
+		transpiler = "tsc",
+		tsconfig = {},
+)
+
+esbuild(
+    name = "lib",
+    deps = [":entrypoint_library"],
+    entry_point = "entrypoint.js",
+)
