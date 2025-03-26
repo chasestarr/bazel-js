@@ -16,6 +16,9 @@ npm.npm_translate_lock(
     npmrc = "//:.npmrc",
     pnpm_lock = "//:pnpm-lock.yaml",
     verify_node_modules_ignored = "//:.bazelignore",
+    public_hoist_packages = {
+        "@graphql-inspector/diff-command": [""],
+    },
 )
 use_repo(npm, "npm")
 

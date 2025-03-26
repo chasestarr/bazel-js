@@ -14,9 +14,9 @@ js_binary(
     name = "graphql_inspector_bin",
     data = [
         ":node_modules",
+        "//:node_modules/@graphql-inspector/diff-command",
         "new.graphql",
         "old.graphql",
     ],
     entry_point = ":graphql_inspector_entry_point",
-    env = {"NODE_PATH": "node_modules"},
 )

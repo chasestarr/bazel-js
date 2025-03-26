@@ -59,6 +59,9 @@ through @graphql-inspector/ci. This is viable this time, but will break down
 again in the future.
 
 Installing `node_modules` locally and running through exec seems to work fine:
+(This turned out to be incorrect because I did not set `hoist=false` in the
+.npmrc file)
+
 ```
 multiple-graphql on main $ pnpm install
 multiple-graphql on main $ pnpm exec graphql-inspector diff old.graphql new.graphql
@@ -67,4 +70,35 @@ Detected the following changes (1) between schemas:
 
 ✖  Field age was removed from object type User
 error Detected 1 breaking change
+```
+
+The correct fix was to add `public_hoist_packages` to `npm_translate_lock` rule
+in `MODULE.bazel`. and then update the `BUILD.bazel` file to depend on the
+globally-scoped instance of `@graphql-inspector/diff-command`. This occurs
+because some other unknown (without thoroughly inspecting the dep code) package
+depends on `diff-command` without declaring it in `package.json`. or peer dep.
+
+See pnpm docs on [dep hoisting](https://pnpm.io/npmrc#dependency-hoisting-settings),
+[Rush explanation of the problem](https://rushjs.io/pages/advanced/phantom_deps/),
+and [rules_js feature for resolving](https://github.com/aspect-build/rules_js/blob/main/docs/troubleshooting.md#its-a-plugin).
+
+```
+npm.npm_translate_lock(
+  public_hoist_packages = {
+      "@graphql-inspector/diff-command": [""],
+  },
+)
+```
+
+```
+js_binary(
+    name = "graphql_inspector_bin",
+    data = [
+        ":node_modules",
+        "//:node_modules/@graphql-inspector/diff-command",
+        "new.graphql",
+        "old.graphql",
+    ],
+    entry_point = ":graphql_inspector_entry_point",
+)
 ```
