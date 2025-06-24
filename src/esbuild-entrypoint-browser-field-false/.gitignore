@@ -1,0 +1,3 @@
+# ignore esbuild output
+lib.js
+lib.js.map

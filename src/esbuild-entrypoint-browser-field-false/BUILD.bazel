@@ -16,4 +16,5 @@ esbuild(
     name = "lib",
     deps = [":entrypoint_library"],
     entry_point = "entrypoint.js",
+    platform = "browser",
 )
