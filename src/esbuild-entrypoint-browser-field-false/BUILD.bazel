@@ -18,6 +18,7 @@ esbuild(
     entry_point = "entrypoint.js",
     platform = "browser",
     format = "esm",
+    target = "es2020",
 )
 
 esbuild(
@@ -26,5 +27,6 @@ esbuild(
     entry_point = "entrypoint.js",
     platform = "browser",
     format = "esm",
+    target = "es2020",
     bazel_sandbox_plugin = False,
 )
