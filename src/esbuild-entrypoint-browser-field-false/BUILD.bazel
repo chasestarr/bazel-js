@@ -7,14 +7,24 @@ ts_project(
 		declaration = True,
 		transpiler = "tsc",
 		tsconfig = {},
-        deps = [
-            "//:node_modules/@loaders.gl/worker-utils",
-        ],
+    deps = [
+      "//:node_modules/@loaders.gl/worker-utils",
+    ],
 )
 
 esbuild(
-    name = "lib",
+    name = "lib_failure",
     deps = [":entrypoint_library"],
     entry_point = "entrypoint.js",
     platform = "browser",
+    format = "esm",
+)
+
+esbuild(
+    name = "lib_success",
+    deps = [":entrypoint_library"],
+    entry_point = "entrypoint.js",
+    platform = "browser",
+    format = "esm",
+    bazel_sandbox_plugin = False,
 )
